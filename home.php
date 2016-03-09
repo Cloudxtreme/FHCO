@@ -166,15 +166,15 @@ window.onload = function() {
             <tr>
 
                <td>
-               First Name*:</td><td><input name="NameFirst" type="text" size="32" style="padding-left:5px;" />
-               Middle Initial:<input name="NameMiddle" type="text" size="2" style="padding-left:5px;" />
-               Last Name*:<input name="NameLast" type="text" size="32" style="padding-left:5px;" />
+               First Name*:</td><td><input required name="NameFirst" type="text" size="32" style="padding-left:5px;" />
+               Middle Initial:<input required name="NameMiddle" type="text" size="2" style="padding-left:5px;" />
+               Last Name*:<input required name="NameLast" type="text" size="32" style="padding-left:5px;" />
                </td>
             </tr>
             <tr>
                <td>
-               Email Address*:</td><td><input name="Email" type="email" size="32" style="padding-left:5px;" />
-               Verify Email*:<input name="EmailVerify" type="email" size="32" style="padding-left:5px;" />
+               Email Address*:</td><td><input required name="Email" type="email" size="32" style="padding-left:5px;" />
+               Verify Email*:<input required name="EmailVerify" type="email" size="32" style="padding-left:5px;" />
                </td>
             </tr>
             </table>
@@ -522,7 +522,7 @@ window.onload = function() {
 </div> 
 <br>
             <div style="text-align:center">
-              
+
               <div class="g-recaptcha" data-sitekey="6Lf-VhoTAAAAAIi9i9yD7Mwmx_j3zWpzL_DwYvOw"></div>
 <br>
             <input  type="hidden" name="active_id" value="<?php echo $_POST['active_id']; ?>" >
