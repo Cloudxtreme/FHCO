@@ -48,7 +48,17 @@
         #Using include to run the code in this page grants access to the database
         include ("dbaccess.php"); 
     ?>
-    
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script>
+window.onload = function() {
+  var recaptcha = document.forms["FHCOsignup"]["g-recaptcha-response"];
+  recaptcha.required = true;
+  recaptcha.oninvalid = function(e) {
+    // do something
+    alert("Please complete the captcha");
+  }
+}
+</script>
 </head>
 
 <!-- ========================================================================= -->
@@ -125,7 +135,7 @@
           </tr>
         </table>
 
-        <form action="handle_form.php"  method="post">
+        <form action="handle_form.php" name="FHCOsignup" method="post">
 
             <fieldset>
             <legend>Available Classes/Events:</legend>
@@ -512,9 +522,12 @@
 </div> 
 <br>
             <div style="text-align:center">
-            <input type="hidden" name="active_id" value="<?php echo $_POST['active_id']; ?>" >
-            <input type="submit" name="submit" value= "Submit" />
-            <input type="reset" value="Reset" />
+              
+              <div class="g-recaptcha" data-sitekey="6Lf-VhoTAAAAAIi9i9yD7Mwmx_j3zWpzL_DwYvOw"></div>
+<br>
+            <input  type="hidden" name="active_id" value="<?php echo $_POST['active_id']; ?>" >
+            <input class="buttons" type="submit" name="submit" value= "Submit" />
+            <input class="buttons" type="reset" value="Reset" />
 
             </div>
 

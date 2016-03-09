@@ -1,6 +1,11 @@
 html,body{
 	font-size:18px;
 	padding-left:5px;
+	margin-bottom:20px;
+
+}
+.buttons{
+	font-size:18px;
 }
 
 label{
@@ -14,7 +19,15 @@ label{
 .paymentdiv{
 	text-align:center;
 }
+div.g-recaptcha{
+	text-align:center;
+	margin:0 auto;
+	position:relative;
+	width: 50%;
+display: block;
+margin-right:155px;
 
+}
 #amountpaid{
 	   border-radius: 5px;
 	   border:1px black;
