@@ -135,7 +135,7 @@ window.onload = function() {
           </tr>
         </table>
 
-        <form action="handle_form.php" name="FHCOsignup" method="post">
+        <form action="handle_form.php" id="FHCOsignup" name="FHCOsignup" method="post">
 
             <fieldset>
             <legend>Available Classes/Events:</legend>
@@ -173,8 +173,8 @@ window.onload = function() {
             </tr>
             <tr>
                <td>
-               Email Address*:</td><td><input required name="Email" type="email" size="32" style="padding-left:5px;" />
-               Verify Email*:<input required name="EmailVerify" type="email" size="32" style="padding-left:5px;" />
+               Email Address*:</td><td><input required name="Email" id="Email" type="email" size="32" style="padding-left:5px;" />
+               Verify Email*:<input required name="EmailVerify" id="EmailVerify"  type="email" size="32" style="padding-left:5px;" oninput="check(this)" />
                </td>
             </tr>
             </table>
@@ -187,7 +187,7 @@ window.onload = function() {
                <label for="Company">Company Name:</label><input name="Company" type="text" size="32" style="padding-left:5px;" />
                 <label for="JobTitle">Job Title:</label><input name="JobTitle" type="text" size="32" style="padding-left:5px;" />
                <br> <br>
-                <label for="website">Website:</label><input name="website" type="text" size="50" style="padding-left:5px;" />
+                <label for="website">Website:</label><input name="website" type="url"  size="50" style="padding-left:5px;" />
                <br>  <br>
                 <label for="PhoneHomeAC">Home Phone:</label><input name="PhoneHomeAC" type="text" size=4 maxlength=3 style="padding-left:5px;" />-
                <input name="PhoneHomePrefix" type="text" size=4 maxlength=3 style="padding-left:5px;" />-
@@ -518,7 +518,7 @@ window.onload = function() {
             <br />
 <input type="text" id="paid" name="paid" readonly>
  <div class= "paymentdiv">
-  <label for="amountpaid"><h4>Payment Amount:<h4></label><input type="text" id="amountpaid" name="amountpaid" readonly>
+  <label for="amountpaid"><h4>Payment Amount ($):<h4></label><input type="text" id="amountpaid" name="amountpaid" readonly>
 </div> 
 <br>
             <div style="text-align:center">
@@ -566,6 +566,16 @@ else{
     ;
  
 });
+
+
+ function check(input) {
+        if (input.value != document.getElementById('Email').value) {
+            input.setCustomValidity('Email must be matching.');
+        } else {
+            // input is valid -- reset the error message
+            input.setCustomValidity('');
+        }
+    }
 </script>
 
     </body>
