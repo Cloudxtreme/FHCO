@@ -11,6 +11,25 @@
 
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="js/dist/jquery.validate.js"></script>
+<script>
+  $.validator.setDefaults({
+    submitHandler: function() {
+      alert("submitted!");
+    }
+  });
+
+  $().ready(function() {
+    // validate the comment form when it is submitted
+    $("#FHCOsignup").validate();
+    $("#FHCOsignup").removeAttr("novalidate");
+
+    // validate signup form on keyup and submit
+  
+  });
+  </script>
+<script src="js/validation.js"></script>
+  <link rel="stylesheet" href="css/screen.css">
 
 <!-- Latest compiled JavaScript -->
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -49,6 +68,7 @@
         include ("dbaccess.php"); 
     ?>
     <script src='https://www.google.com/recaptcha/api.js'></script>
+
     <script>
 window.onload = function() {
   var recaptcha = document.forms["FHCOsignup"]["g-recaptcha-response"];
@@ -58,7 +78,12 @@ window.onload = function() {
     alert("Please complete the captcha");
   }
 }
+
+
+
 </script>
+
+
 </head>
 
 <!-- ========================================================================= -->
@@ -166,9 +191,9 @@ window.onload = function() {
             <tr>
 
                <td>
-               First Name*:</td><td><input required name="NameFirst" type="text" size="32" style="padding-left:5px;" />
-               Middle Initial:<input required name="NameMiddle" type="text" size="2" style="padding-left:5px;" />
-               Last Name*:<input required name="NameLast" type="text" size="32" style="padding-left:5px;" />
+               First Name*:</td><td><input required name="NameFirst" id='NameFirst' type="text" size="32" style="padding-left:5px;" />
+               Middle Initial:<input required name="NameMiddle" id='NameMiddle' type="text" size="2" style="padding-left:5px;" />
+               Last Name*:<input required name="NameLast" id='NameLast' type="text" size="32" style="padding-left:5px;" />
                </td>
             </tr>
             <tr>
@@ -524,6 +549,7 @@ window.onload = function() {
             <div style="text-align:center">
 
               <div class="g-recaptcha" data-sitekey="6Lf-VhoTAAAAAIi9i9yD7Mwmx_j3zWpzL_DwYvOw"></div>
+
 <br>
             <input  type="hidden" name="active_id" value="<?php echo $_POST['active_id']; ?>" >
             <input class="buttons" type="submit" name="submit" value= "Submit" />
@@ -576,6 +602,32 @@ else{
             input.setCustomValidity('');
         }
     }
+
+
+    $(function() {
+  $("input").keyup(function() {
+        $(this).val($(this).val().replace(/[&]/g, "and"));
+        $(this).val($(this).val().replace(/[%$()]/g, ""));
+  });
+});
+
+    $(".selector").validate({
+  rules: {
+    name: "required",
+    email: {
+      required: true,
+      email: true
+    }
+  },
+  messages: {
+    name: "Please specify your name",
+    email: {
+      required: "We need your email address to contact you",
+      email: "Your email address must be in the format of name@domain.com"
+    }
+  }
+});
+
 </script>
 
     </body>
