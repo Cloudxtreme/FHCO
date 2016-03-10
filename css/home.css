@@ -4,6 +4,9 @@ html,body{
 	margin-bottom:20px;
 
 }
+fieldset{
+	border:none !important;
+}
 .buttons{
 	font-size:18px;
 }
@@ -37,3 +40,20 @@ margin-right:155px;
     height: 20px; 
     text-align:center;
 }
+
+        body {
+            font-family:Verdana,sans-serif;font-size:0.8em;
+            }
+        div#header,div#footer {
+            border:1px solid grey;
+            margin:5px;margin-bottom:15px;padding:8px;
+            background-color:white;
+            }
+        div#content {
+            background-color:#ddd;
+            }
+        legend {
+            font-weight: bold;
+            padding-left: 5px;
+            padding-right: 5px;
+            }

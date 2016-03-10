@@ -15,7 +15,7 @@
 <script>
   $.validator.setDefaults({
     submitHandler: function() {
-      alert("submitted!");
+     ("#FHCOsignup").submit();
     }
   });
 
@@ -28,7 +28,7 @@
   
   });
   </script>
-<script src="js/validation.js"></script>
+
   <link rel="stylesheet" href="css/screen.css">
 
 <!-- Latest compiled JavaScript -->
@@ -44,24 +44,7 @@
     </script>
     <![endif]-->
     
-    <style>
-        body {
-            font-family:Verdana,sans-serif;font-size:0.8em;
-            }
-        div#header,div#footer {
-            border:1px solid grey;
-            margin:5px;margin-bottom:15px;padding:8px;
-            background-color:white;
-            }
-        div#content {
-            background-color:#ddd;
-            }
-        legend {
-            font-weight: bold;
-            padding-left: 5px;
-            padding-right: 5px;
-            }
-    </style>
+
     
     <?php
         #Using include to run the code in this page grants access to the database
@@ -192,12 +175,16 @@ window.onload = function() {
 
                <td>
                First Name*:</td><td><input required name="NameFirst" id='NameFirst' type="text" size="32" style="padding-left:5px;" />
-               Middle Initial:<input required name="NameMiddle" id='NameMiddle' type="text" size="2" style="padding-left:5px;" />
+               Middle Initial:<input name="NameMiddle" id='NameMiddle' type="text" size="2" style="padding-left:5px;" />
                Last Name*:<input required name="NameLast" id='NameLast' type="text" size="32" style="padding-left:5px;" />
+              
                </td>
+
             </tr>
+
             <tr>
                <td>
+                
                Email Address*:</td><td><input required name="Email" id="Email" type="email" size="32" style="padding-left:5px;" />
                Verify Email*:<input required name="EmailVerify" id="EmailVerify"  type="email" size="32" style="padding-left:5px;" oninput="check(this)" />
                </td>
@@ -605,9 +592,9 @@ else{
 
 
     $(function() {
-  $("input").keyup(function() {
-        $(this).val($(this).val().replace(/[&]/g, "and"));
-        $(this).val($(this).val().replace(/[%$()]/g, ""));
+  $("input").change(function() {
+        $(this).val($(this).val().replace(/[&]/, "and"));
+        $(this).val($(this).val().replace(/[%$()]/, ""));
   });
 });
 
