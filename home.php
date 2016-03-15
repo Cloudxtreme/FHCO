@@ -53,14 +53,14 @@
     <script src='https://www.google.com/recaptcha/api.js'></script>
 
     <script>
-window.onload = function() {
-  var recaptcha = document.forms["FHCOsignup"]["g-recaptcha-response"];
-  recaptcha.required = true;
-  recaptcha.oninvalid = function(e) {
-    // do something
-    alert("Please complete the captcha");
-  }
-}
+// window.onload = function() {
+//   var recaptcha = document.forms["FHCOsignup"]["g-recaptcha-response"];
+//   recaptcha.required = true;
+//   recaptcha.oninvalid = function(e) {
+//     // do something
+//     alert("Please complete the captcha");
+//   }
+// }
 
 
 
@@ -143,7 +143,7 @@ window.onload = function() {
           </tr>
         </table>
 
-        <form action="handle_form.php" id="FHCOsignup" name="FHCOsignup" method="post">
+        <form action="handle_form.php" id="FHCOsignup" name="FHCOsignup" method="post" data-ajax="false">
 
             <fieldset>
             <legend>Available Classes/Events:</legend>
@@ -184,7 +184,7 @@ window.onload = function() {
 
             <tr>
                <td>
-                
+
                Email Address*:</td><td><input required name="Email" id="Email" type="email" size="32" style="padding-left:5px;" />
                Verify Email*:<input required name="EmailVerify" id="EmailVerify"  type="email" size="32" style="padding-left:5px;" oninput="check(this)" />
                </td>
@@ -559,7 +559,6 @@ else{
       $('#amountpaid').val(0);
 }
     ;
- 
 });
 
 $( "#ClassSelect" ).change(function() {
@@ -615,10 +614,22 @@ else{
   }
 });
 
+$("#EmailVerify").change(function(){
+    if ($("#Email").val() == $("#EmailVerify").val()) {
+        $("#EmailVerify").css("background-color","white");
+    }
+      if ($("#Email").val() != $("#EmailVerify").val()) {
+        $("#EmailVerify").css("background-color"," #ffcccc");
+
+    }
+});
+
 </script>
 
     </body>
 
 <!-- ========================================================================= -->
+ 
+
 
 </html>
