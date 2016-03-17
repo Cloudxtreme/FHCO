@@ -13,6 +13,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script src="js/dist/jquery.validate.js"></script>
 <script>
+
   $.validator.setDefaults({
     submitHandler: function() {
      ("#FHCOsignup").submit();
@@ -113,10 +114,8 @@
         #echo "<p>FileMaker Internal Record ID: " . $record->getField('zz_RecordID_c') . "</p>"; 
     ?>
 
-        <table>
-          <tr>
-             <td>&nbsp;&nbsp;</td>
-             <td>
+       
+          
              <?php
              //CONTAINER IMAGE
              // Find the record
@@ -125,26 +124,25 @@
              #$record = $result->getFirstRecord();
              #Display the internally stored container file.
              #echo 'Internally Stored File<br>Path: ' . $record->getField('ImageLogo') . '<br>';
-             echo '<img src="containerBridge.php?path=' . urlencode($record->getField('O_ImageLogo_cu')) . '" />';
+             
              #echo '<p>';
              #echo 'Externally Stored File<br>Path: ' . $fm->getContainerDataURL($record->getField('ImageLogo')) . '<br>';
              #echo '    <img src="containerBridge.php?path=' . $fm->getContainerDataURL(urlencode($record->getField('ImageLogo'))) . '">';
              ?>
-             </td>
-             <td>&nbsp;</td>
-             <td style="text-align: center">
-             <h1>FHCO Event Registration</h1>
+            
+             
+       <img id = 'logo' src = 'img/FHCO_logo.png'/><br><br><br>
+             <h1> FHCO Event Registration</h1>
+           
              <hr />
              <span style="font-style: italic">Please choose an event to register for and fill out the required fields below.</span>
              <br>
              <br>
-             </td>
-             <td>&nbsp;</td>
-          </tr>
-        </table>
+     
+<div class="row">
 
         <form action="handle_form.php" id="FHCOsignup" name="FHCOsignup" method="post" data-ajax="false">
-
+</div>
             <fieldset>
             <legend>Available Classes/Events:</legend>
             Class/Event Pre-Registration Deadline: 1 day before the Class/Event Occurs.<br><br>
@@ -169,50 +167,73 @@
 
             <fieldset>
             <legend>Required Personal Information:</legend>
-            <table>
+      
             
-            <tr>
+           
 
-               <td>
-               First Name*:</td><td><input required name="NameFirst" id='NameFirst' type="text" size="32" style="padding-left:5px;" />
-               Middle Initial:<input name="NameMiddle" id='NameMiddle' type="text" size="2" style="padding-left:5px;" />
-               Last Name*:<input required name="NameLast" id='NameLast' type="text" size="32" style="padding-left:5px;" />
+               <div class="row">
+
+               <div class="col-md-3"> <label for="NameFirst">First Name*:&nbsp;</label><input required name="NameFirst" id='NameFirst' type="text" size="32" style="padding-left:5px;" />
+                </div>
+<div class="col-md-3"><label for="NameMiddle">Middle Initial:&nbsp; </label><input name="NameMiddle" id='NameMiddle' type="text" size="2" style="padding-left:5px;" />
+          </div>
+               </div>
+               <div class="row">
+
               
-               </td>
+              <div class="col-md-3">  <label for="NameLast">Last Name*:&nbsp; </label><input required name="NameLast" id='NameLast' type="text" size="32" style="padding-left:5px;" />
+           </div>
+           </div>
+<div class="row">
 
-            </tr>
-
-            <tr>
-               <td>
-
-               Email Address*:</td><td><input required name="Email" id="Email" type="email" size="32" style="padding-left:5px;" />
-               Verify Email*:<input required name="EmailVerify" id="EmailVerify"  type="email" size="32" style="padding-left:5px;" oninput="check(this)" />
-               </td>
-            </tr>
-            </table>
+              <div class="col-md-3">  <label for="Email">Email:&nbsp;</label><input required name="Email" id="Email" type="email" size="32" style="padding-left:5px;" />
+              </div><div class="col-md-3"> <label for="EmailVerify">Verify Email*:&nbsp; </label><input required name="EmailVerify" id="EmailVerify"  type="email" size="32" style="padding-left:5px;" oninput="check(this)" />
+               </div>
+               </div>
+         
             </fieldset>
 
             <br />
 
             <fieldset>
             <legend>Additional Personal Information:</legend>
-               <label for="Company">Company Name:</label><input name="Company" type="text" size="32" style="padding-left:5px;" />
-                <label for="JobTitle">Job Title:</label><input name="JobTitle" type="text" size="32" style="padding-left:5px;" />
-               <br> <br>
-                <label for="website">Website:</label><input name="website" type="url"  size="50" style="padding-left:5px;" />
-               <br>  <br>
-                <label for="PhoneHomeAC">Home Phone:</label><input name="PhoneHomeAC" type="text" size=4 maxlength=3 style="padding-left:5px;" />-
+            <div class="row">
+
+             <div class="col-md-3">  <label for="Company">Company Name:&nbsp; </label><input name="Company" type="text" size="32" style="padding-left:5px;" />
+                </div>
+              <div class="col-md-3">  <label for="JobTitle">Job Title:&nbsp; </label><input name="JobTitle" type="text" size="32" style="padding-left:5px;" />
+               </div></div>
+           <br>
+            <div class="row">
+                <div class="col-md-3">
+                <label for="website">Website:&nbsp;</label><input name="website" type="url"  size="50" style="padding-left:5px;" />
+              </div>
+              </div>
+               <br>  
+                <div class="row">
+                  <div class="col-md-3">
+                <label for="PhoneHomeAC">Home Phone:&nbsp;</label><input name="PhoneHomeAC" type="text" size=4 maxlength=3 style="padding-left:5px;" />-
                <input name="PhoneHomePrefix" type="text" size=4 maxlength=3 style="padding-left:5px;" />-
                <input name="PhoneHomeSuffix" type="text" size=5 maxlength=4 style="padding-left:5px;" />
-                <label for="PhoneWorkAC">Work Phone:</label><input name="PhoneWorkAC" type="text" size=4 maxlength=3 style="padding-left:5px;" />
+             </div>
+              <div class="col-md-3">
+                <label for="PhoneWorkAC">Work Phone:&nbsp;</label><input name="PhoneWorkAC" type="text" size=4 maxlength=3 style="padding-left:5px;" />
                <input name="PhoneWorkPrefix" type="text" size=4 maxlength=3 style="padding-left:5px;" />
                <input name="PhoneWorkSuffix" type="text" size=5 maxlength=4 style="padding-left:5px;" />
-               <br><br>
-               <label for="AddressStreet">Street Address:</label><input name="AddressStreet" type="text" size="32" style="padding-left:5px;" />
-               Unit:<input name="AddressUnit" type="text" size="10" style="padding-left:5px;" />
-               <br><br>
-               <label for="AddressCity">City:</label><input name="AddressCity" type="text" size="32" style="padding-left:5px;" />
-               <label for="AddressState">State:</label> 
+              </div>
+               </div>
+               <br>
+                <div class="row">
+                  <div class="col-md-3">
+               <label for="AddressStreet">Street Address:&nbsp;</label><input name="AddressStreet" type="text" size="32" style="padding-left:5px;" />
+              </div><div class="col-md-3"><label for="AddressUnit">Unit:&nbsp;</label><input name="AddressUnit" id=="AddressUnit" type="text" size="10" style="padding-left:5px;" />
+              </div>
+              </div>
+               <br>
+                <div class="row">
+                  <div class="col-md-3">
+               <label for="AddressCity">City:&nbsp;</label><input name="AddressCity" type="text" size="32" style="padding-left:5px;" /></div>
+               <div class="col-md-2"><label for="AddressState">State:&nbsp;</label> 
                
                <select name="AddressState" >
                 <option value="">Select...</option>
@@ -267,10 +288,14 @@
   <option value="WV">West Virginia</option>
   <option value="WI">Wisconsin</option>
   <option value="WY">Wyoming</option>
-</select>       
-               
-              <label for="AddressZip">ZIP Code:</label><input name="AddressZip" type="text" size="10" style="padding-left:5px;" />
-               <br><br>
+</select>       </div>
+               <div class="col-md-2">
+              <label for="AddressZip">ZIP Code:&nbsp;</label><input name="AddressZip" type="text" size="10" style="padding-left:5px;" />
+               </div>
+               </div>
+               <br>
+                <div class="row">
+                  <div class="col-md-3">
                 <label for="AddressCountry">Country:</label>
         <select name="AddressCountry" id="select_catalog">
 <option value="">Select...</option>
@@ -522,6 +547,8 @@
 <option value="Zambia">Zambia</option>
 <option value="Zimbabwe">Zimbabwe</option>
         </select>
+      </div>
+      </div>
             </fieldset>
 
             <br />
@@ -540,7 +567,7 @@
 <br>
             <input  type="hidden" name="active_id" value="<?php echo $_POST['active_id']; ?>" >
             <input class="buttons" type="submit" name="submit" value= "Submit" />
-            <input class="buttons" type="reset" value="Reset" />
+           
 
             </div>
 

@@ -8,7 +8,7 @@
   <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
   <!-- bootstrap Latest compiled and minified CSS -->
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-
+<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 
   <!-- Boostrap Latest compiled JavaScript -->
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -69,14 +69,21 @@ echo  "<tr><td><h3> Amount Due: </h3></td><td style= 'text-align:center;'><h3><b
  }
 
  if ($missingField > 0){
- 	echo "<a href='javascript:history.go(-1)''>You are missing a required field, Please return to the previous page.</a>";
+ 	echo "<a style='text-align:center;' href='javascript:history.go(-1)''>You are missing a required field, Please return to the previous page.</a>";
 
  }
- ?>
- <div id = "buttoncontainer">
+if ($payment > 0 && $missingField == 0){
+echo" <div id = 'buttoncontainer'>
 <button class='btn' style= 'text-align:center; margin: 0px auto;'id='customButton'>Confirm & Purchase</button>
-</div>
-<?php
+</div>";
+}
+if ($payment == 0 && $missingField == 0){
+  echo" <div id = 'buttoncontainer'>
+<button class='btn' onclick='submitForm();' style= 'text-align:center; margin: 0px auto;'id=''>Confirm & Register</button>
+</div>";
+}
+
+
 
 	$keys = array(
 		'ClassSelect',
@@ -102,11 +109,11 @@ echo  "<tr><td><h3> Amount Due: </h3></td><td style= 'text-align:center;'><h3><b
 		'paid',
 		'amountpaid',
 		);
-
+echo "<form name='userinfo' id ='userinfo' action='submitted.php' method='post' data-ajax='true'>";
  foreach($keys as $value){
-     echo  "<input style='display:none; max-height:1px;' readonly type='text' name='"  . $_POST[$value] . "' value ='"  . $_POST[$value] . "'> <br>";
+     echo  "<input  max-height:1px;' style='display:none;' readonly type='text' name='"  . $_POST[$value] . "' value ='"  . $_POST[$value] . "'> <br>";
  }
-
+echo "</form>";
 ?>
 
 
@@ -115,20 +122,22 @@ echo  "<tr><td><h3> Amount Due: </h3></td><td style= 'text-align:center;'><h3><b
 
 
 <script>
-var costsMoney = <?php echo $payment ?>;
-$( document ).ready(function() {
-    if (costsMoney == 0){
-alert('FREE')
-}
-});
+// var costsMoney = <?php echo $payment ?>;
+// $( document ).ready(function() {
+//     if (costsMoney == 0){
+// alert('FREE')
+// }
+// });
 
   var handler = StripeCheckout.configure({
     key: 'pk_test_6pRNASCoBOKtIshFeQd4XMUh',
-    image: '/img/documentation/checkout/marketplace.png',
+    image: 'img/FHCO.png',
     locale: 'auto',
     token: function(token) {
       // Use the token to create the charge with a server-side script.
       // You can access the token ID with `token.id`
+
+          $("#userinfo").submit();
     }
   });
      //  var str = $( "#ClassSelect" ).val(); 
@@ -138,8 +147,8 @@ alert('FREE')
   $('#customButton').on('click', function(e) {
     // Open Checkout with further options
     handler.open({
-      name: 'Stripe.com',
-      description: '2 widgets',
+      name: 'FHCO Sign Up',
+      description: 'Enter Your Payment Information Below',
     
 
 
@@ -154,9 +163,13 @@ alert('FREE')
     
 
   });
+
+  function submitForm(){
+     document.getElementById("userinfo").submit();
+};
 </script>
 </body>
 
 
 
-</html>
+</html> 

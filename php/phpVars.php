@@ -3,6 +3,7 @@ $classSelect = $_POST['ClassSelect'];
 $nameFirst = $_POST['NameFirst'];
 $nameLast = $_POST['NameLast'];
 $Email = $_POST['Email'];
+$EmailVerify = $_POST['EmailVerify'];
 $PhoneHome = $_POST['PhoneHomeAC'] . "-" . $_POST['PhoneHomePrefix'] . "-" . $_POST['PhoneHomeSuffix'];
 $PhoneWork = $_POST['PhoneWorkAC'] . "-" . $_POST['PhoneWorkPrefix'] . "-" . $_POST['PhoneWorkSuffix'];
 $Company = $_POST['Company'];
@@ -26,6 +27,14 @@ if ($nameLast == ""){
 	$missingField += 1;
 }
 if ($Email == ""){
+	$missingField += 1;
+}
+
+if ($EmailVerify == ""){
+	$missingField += 1;
+}
+
+if ($Email != $EmailVerify){
 	$missingField += 1;
 }
 if ($PhoneHome == ""){
