@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html lang="en-US">
 
-<!-- ========================================================================= -->
-
+<html>
 <head>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 <!-- Latest compiled and minified CSS -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
+<!-- Bootstrap -->
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
 <!-- jQuery library -->
@@ -51,17 +53,17 @@
         #Using include to run the code in this page grants access to the database
         include ("dbaccess.php"); 
     ?>
-    <script src='https://www.google.com/recaptcha/api.js'></script>
+
 
     <script>
-// window.onload = function() {
-//   var recaptcha = document.forms["FHCOsignup"]["g-recaptcha-response"];
-//   recaptcha.required = true;
-//   recaptcha.oninvalid = function(e) {
-//     // do something
-//     alert("Please complete the captcha");
-//   }
-// }
+ window.onload = function() {
+   var recaptcha = document.forms["FHCOsignup"]["g-recaptcha-response"];
+   recaptcha.required = true;
+   recaptcha.oninvalid = function(e) {
+     // do something
+     alert("Please complete the captcha by checking the box which says 'I am not a robot'.");
+   }
+ }
 
 
 
@@ -69,12 +71,9 @@
 
 
 </head>
+  <body>
+  	 <?php
 
-<!-- ========================================================================= -->
-
-    <body id="body">
-
-    <?php
         #Create a 'find all' command for the specified table layout
         $findCommand =& $fm->newFindAllCommand('RegInput_1_CWP');
         #Execute the command and store the result
@@ -114,45 +113,38 @@
         #echo "<p>FileMaker Internal Record ID: " . $record->getField('zz_RecordID_c') . "</p>"; 
     ?>
 
-       
-          
-             <?php
-             //CONTAINER IMAGE
-             // Find the record
-             #$request = $fm->newFindAllCommand('RegInput_1_CWP');
-             #$result = $request->execute();
-             #$record = $result->getFirstRecord();
-             #Display the internally stored container file.
-             #echo 'Internally Stored File<br>Path: ' . $record->getField('ImageLogo') . '<br>';
-             
-             #echo '<p>';
-             #echo 'Externally Stored File<br>Path: ' . $fm->getContainerDataURL($record->getField('ImageLogo')) . '<br>';
-             #echo '    <img src="containerBridge.php?path=' . $fm->getContainerDataURL(urlencode($record->getField('ImageLogo'))) . '">';
-             ?>
-            
              
        <img id = 'logo' src = 'img/FHCO_logo.png'/><br><br><br>
+       <hr>
              <h1> FHCO Event Registration</h1>
            
              <hr />
+             <div class= "wrap">
+             <div class = "content">
+               <div class="row">
+                <div class="col-md-12 col-lg-offset-2"> 
              <span style="font-style: italic">Please choose an event to register for and fill out the required fields below.</span>
+            </div>
+             </div>
              <br>
              <br>
      
-<div class="row">
 
-        <form action="handle_form.php" id="FHCOsignup" name="FHCOsignup" method="post" data-ajax="false">
-</div>
-            <fieldset>
+    <form action="checkout.php" id="FHCOsignup" name="FHCOsignup" method="post">
+  <div class="row">
+                <div class="col-md-12 col-lg-offset-2"> 
+          <fieldset>
             <legend>Available Classes/Events:</legend>
+
             Class/Event Pre-Registration Deadline: 1 day before the Class/Event Occurs.<br><br>
+           
             <?php
                 //Get value list from the layout as HTML radio buttons.
                 //get the layout
                 $layout =& $fm->getLayout('RegInput_1_CWP');
                 //get the desired value list (in this case, 'prefixes')
                 $values = $layout->getValueList('Classes');
-               echo "<select id='ClassSelect' name = 'ClassSelect' required>";
+               echo "<select style = 'min-width: 290px !important;' id='ClassSelect' name = 'ClassSelect' required>";
                 echo "<option value= ''>" . "select..." . "</option>";
                 foreach($values as $value) 
                 {
@@ -162,76 +154,83 @@
                 echo "</select>";
             ?>
             </fieldset>
-
-            <br>
+            </div></div>
+               <br>
 
             <fieldset>
+              <div class="row">
+                <div class="col-md-12 col-lg-offset-2"> 
             <legend>Required Personal Information:</legend>
       
-            
+            </div>
+          </div>
            
 
                <div class="row">
 
-               <div class="col-md-3"> <label for="NameFirst">First Name*:&nbsp;</label><input required name="NameFirst" id='NameFirst' type="text" size="32" style="padding-left:5px;" />
+               <div class="col-md-4 col-lg-offset-2"> <label for="NameFirst">First Name*:&nbsp;</label><input required name="NameFirst" id='NameFirst' type="text" size="32" style="padding-left:5px;" />
                 </div>
-<div class="col-md-3"><label for="NameMiddle">Middle Initial:&nbsp; </label><input name="NameMiddle" id='NameMiddle' type="text" size="2" style="padding-left:5px;" />
+<div class="col-md-4"><label for="NameMiddle">Middle Initial:&nbsp; </label><input name="NameMiddle" id='NameMiddle' type="text" size="2" style="padding-left:5px;" />
           </div>
                </div>
                <div class="row">
 
               
-              <div class="col-md-3">  <label for="NameLast">Last Name*:&nbsp; </label><input required name="NameLast" id='NameLast' type="text" size="32" style="padding-left:5px;" />
+              <div class="col-md-4 col-lg-offset-2">  <label for="NameLast">Last Name*:&nbsp; </label><input required name="NameLast" id='NameLast' type="text" size="32" style="padding-left:5px;" />
            </div>
            </div>
 <div class="row">
 
-              <div class="col-md-3">  <label for="Email">Email:&nbsp;</label><input required name="Email" id="Email" type="email" size="32" style="padding-left:5px;" />
-              </div><div class="col-md-3"> <label for="EmailVerify">Verify Email*:&nbsp; </label><input required name="EmailVerify" id="EmailVerify"  type="email" size="32" style="padding-left:5px;" oninput="check(this)" />
+              <div class="col-md-4 col-lg-offset-2">  <label for="Email">Email:&nbsp;</label><input required name="Email" id="Email" type="email" size="32" style="padding-left:5px;" />
+              </div><div class="col-md-4"> <label for="EmailVerify">Verify Email*:&nbsp; </label><input required name="EmailVerify" id="EmailVerify"  type="email" size="32" style="padding-left:5px;" oninput="check(this)" />
                </div>
                </div>
          
             </fieldset>
 
+
             <br />
 
             <fieldset>
+               <div class="row">
+                <div class="col-md-12 col-lg-offset-2"> 
             <legend>Additional Personal Information:</legend>
+          </div></div>
             <div class="row">
 
-             <div class="col-md-3">  <label for="Company">Company Name:&nbsp; </label><input name="Company" type="text" size="32" style="padding-left:5px;" />
+             <div class="col-md-4 col-lg-offset-2">  <label for="Company">Company Name:&nbsp; </label><input name="Company" type="text" size="32" style="padding-left:5px;" />
                 </div>
-              <div class="col-md-3">  <label for="JobTitle">Job Title:&nbsp; </label><input name="JobTitle" type="text" size="32" style="padding-left:5px;" />
+              <div class="col-md-4">  <label for="JobTitle">Job Title:&nbsp; </label><input name="JobTitle" type="text" size="32" style="padding-left:5px;" />
                </div></div>
            <br>
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-4 col-lg-offset-2">
                 <label for="website">Website:&nbsp;</label><input name="website" type="url"  size="50" style="padding-left:5px;" />
               </div>
               </div>
                <br>  
                 <div class="row">
-                  <div class="col-md-3">
+                  <div class="col-md-4 col-lg-offset-2">
                 <label for="PhoneHomeAC">Home Phone:&nbsp;</label><input name="PhoneHomeAC" type="text" size=4 maxlength=3 style="padding-left:5px;" />-
                <input name="PhoneHomePrefix" type="text" size=4 maxlength=3 style="padding-left:5px;" />-
                <input name="PhoneHomeSuffix" type="text" size=5 maxlength=4 style="padding-left:5px;" />
              </div>
-              <div class="col-md-3">
-                <label for="PhoneWorkAC">Work Phone:&nbsp;</label><input name="PhoneWorkAC" type="text" size=4 maxlength=3 style="padding-left:5px;" />
-               <input name="PhoneWorkPrefix" type="text" size=4 maxlength=3 style="padding-left:5px;" />
+              <div class="col-md-4">
+                <label for="PhoneWorkAC">Work Phone:&nbsp;</label><input name="PhoneWorkAC" type="text" size=4 maxlength=3 style="padding-left:5px;" />-
+               <input name="PhoneWorkPrefix" type="text" size=4 maxlength=3 style="padding-left:5px;" />-
                <input name="PhoneWorkSuffix" type="text" size=5 maxlength=4 style="padding-left:5px;" />
               </div>
                </div>
                <br>
                 <div class="row">
-                  <div class="col-md-3">
+                  <div class="col-md-4 col-lg-offset-2">
                <label for="AddressStreet">Street Address:&nbsp;</label><input name="AddressStreet" type="text" size="32" style="padding-left:5px;" />
-              </div><div class="col-md-3"><label for="AddressUnit">Unit:&nbsp;</label><input name="AddressUnit" id=="AddressUnit" type="text" size="10" style="padding-left:5px;" />
+              </div><div class="col-md-4"><label for="AddressUnit">Unit:&nbsp;</label><input name="AddressUnit" id=="AddressUnit" type="text" size="10" style="padding-left:5px;" />
               </div>
               </div>
                <br>
                 <div class="row">
-                  <div class="col-md-3">
+                  <div class="col-md-4 col-lg-offset-2">
                <label for="AddressCity">City:&nbsp;</label><input name="AddressCity" type="text" size="32" style="padding-left:5px;" /></div>
                <div class="col-md-2"><label for="AddressState">State:&nbsp;</label> 
                
@@ -295,7 +294,7 @@
                </div>
                <br>
                 <div class="row">
-                  <div class="col-md-3">
+                  <div class="col-md-4 col-lg-offset-2">
                 <label for="AddressCountry">Country:</label>
         <select name="AddressCountry" id="select_catalog">
 <option value="">Select...</option>
@@ -551,28 +550,26 @@
       </div>
             </fieldset>
 
-            <br />
-
+             <br />
 
             <br />
 <input type="text" id="paid" name="paid" readonly>
  <div class= "paymentdiv">
-  <label for="amountpaid"><h4>Payment Amount ($):<h4></label><input type="text" id="amountpaid" name="amountpaid" readonly>
+  <h4><label for="amountpaid">Payment Amount ($):</label></h4><br><input type="text" id="amountpaid" name="amountpaid" readonly>
 </div> 
 <br>
             <div style="text-align:center">
 
-              <div class="g-recaptcha" data-sitekey="6Lf-VhoTAAAAAIi9i9yD7Mwmx_j3zWpzL_DwYvOw"></div>
+      <div class="g-recaptcha" data-sitekey="6Lf-VhoTAAAAAIi9i9yD7Mwmx_j3zWpzL_DwYvOw"></div>
 
 <br>
             <input  type="hidden" name="active_id" value="<?php echo $_POST['active_id']; ?>" >
             <input class="buttons" type="submit" name="submit" value= "Submit" />
-           
 
             </div>
 
-</form>
-<script>
+    </form>
+    <script>
 $( document ).ready(function() {
       var str = $( "#ClassSelect" ).val(); 
     var n = str.search("\\\$");
@@ -652,11 +649,7 @@ $("#EmailVerify").change(function(){
 });
 
 </script>
-
-    </body>
-
-<!-- ========================================================================= -->
- 
-
-
+</div>
+</div>
+  </body>
 </html>

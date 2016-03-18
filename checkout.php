@@ -1,7 +1,5 @@
-<html>
 
-<head>
-  <?php
+<?php
 
        $captcha;
        
@@ -9,23 +7,31 @@
           $captcha=$_POST['g-recaptcha-response'];
         }
         if(!$captcha){
-          echo '<h2>Please check the the captcha form.</h2>';
+            echo "<h2><a style='text-align:center;' href='home.php''>You are missing a valid captcha, Please return to the previous page.</a></h2>";
+
           exit;
         }
-  $secretKey = "6Lf-VhoTAAAAAF_J7Tm59DVCLqsDlJEHxCAUbJwz";
-  $ip = $_SERVER['REMOTE_ADDR'];
+	$secretKey = "6Lf-VhoTAAAAAF_J7Tm59DVCLqsDlJEHxCAUbJwz";
+	$ip = $_SERVER['REMOTE_ADDR'];
         $response=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$secretKey."&response=".$captcha."&remoteip=".$ip);
-  $responseKeys = json_decode($response,true);
+	$responseKeys = json_decode($response,true);
         if(intval($responseKeys["success"]) !== 1) {
-          echo '<h2>You are spammer ! Get the @$%K out</h2>';
+            echo "<h2><a style='text-align:center;' href='home.php''>You are missing a valid captcha, Please return to the previous page.</a></h2>";
+
         } else {
-          echo '<h2>Thanks for posting comment.</h2>';
+         
         }
 ?>
-	<title>Register The Class</title>
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>Register The Class</title>
 <script src='https://www.google.com/recaptcha/api.js'></script>
 
-	 <meta charset="UTF-8">
+   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
   <!-- bootstrap Latest compiled and minified CSS -->
@@ -58,7 +64,7 @@ $payment = $_POST['amountpaid'];
 $paymentModified = str_replace('.', '', $payment);
 
 
-	# Field names we expect as keys within $_POST[]
+  # Field names we expect as keys within $_POST[]
 $missingField = 0;
 require_once('php/phpVars.php');
 
@@ -88,7 +94,7 @@ echo  "<tr><td><h3> Amount Due: </h3></td><td style= 'text-align:center;'><h3><b
  }
 
  if ($missingField > 0){
- 	echo "<a style='text-align:center;' href='javascript:history.go(-1)''>You are missing a required field, Please return to the previous page.</a>";
+  echo "<a style='text-align:center;' href='javascript:history.go(-1)''>You are missing a required field, Please return to the previous page.</a>";
 
  }
 if ($payment > 0 && $missingField == 0){
@@ -104,30 +110,31 @@ if ($payment == 0 && $missingField == 0){
 
 
 
-	$keys = array(
-		'ClassSelect',
-		'NameFirst',
-		'NameLast',
-		'Email',
-		'EmailVerify',
-		'PhoneHomeAC',
-		'PhoneHomePrefix',
-		'PhoneHomeSuffix',
-		'PhoneWorkAC',
-		'PhoneWorkPrefix',
-		'PhoneWorkSuffix',
-		'Company',
-		'JobTitle',
-		'website',
-		'AddressStreet',
-		'AddressUnit',
-		'AddressCity',
-		'AddressState',
-		'AddressZip',
-		'AddressCountry',
-		'paid',
-		'amountpaid',
-		);
+  $keys = array(
+    'ClassSelect',
+    'NameFirst',
+    'NameMiddle',
+    'NameLast',
+    'Email',
+    'EmailVerify',
+    'PhoneHomeAC',
+    'PhoneHomePrefix',
+    'PhoneHomeSuffix',
+    'PhoneWorkAC',
+    'PhoneWorkPrefix',
+    'PhoneWorkSuffix',
+    'Company',
+    'JobTitle',
+    'website',
+    'AddressStreet',
+    'AddressUnit',
+    'AddressCity',
+    'AddressState',
+    'AddressZip',
+    'AddressCountry',
+    'paid',
+    'amountpaid',
+    );
 echo "<form name='userinfo' id ='userinfo' action='submitted.php' method='post' data-ajax='true'>";
  foreach($keys as $value){
      echo  "<input  max-height:1px;' style='display:none;' readonly type='text' name='"  . $value . "' value ='"  . $_POST[$value] . "'> <br>";
