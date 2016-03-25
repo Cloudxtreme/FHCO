@@ -122,7 +122,7 @@
              <div class= "wrap">
              <div class = "content">
                <div class="row">
-                <div class="col-md-12 col-lg-offset-2"> 
+                <div class="col-md-8 col-lg-offset-2"> 
              <span style="font-style: italic">Please choose an event to register for and fill out the required fields below.</span>
             </div>
              </div>
@@ -132,7 +132,7 @@
 
     <form action="checkout.php" id="FHCOsignup" name="FHCOsignup" method="post">
   <div class="row">
-                <div class="col-md-12 col-lg-offset-2"> 
+                <div class="col-md-8 col-lg-offset-2"> 
           <fieldset>
             <legend>Available Classes/Events:</legend>
 
@@ -159,7 +159,7 @@
 
             <fieldset>
               <div class="row">
-                <div class="col-md-12 col-lg-offset-2"> 
+                <div class="col-md-8 col-lg-offset-2"> 
             <legend>Required Personal Information:</legend>
       
             </div>
@@ -193,7 +193,7 @@
 
             <fieldset>
                <div class="row">
-                <div class="col-md-12 col-lg-offset-2"> 
+                <div class="col-md-8 col-lg-offset-2"> 
             <legend>Additional Personal Information:</legend>
           </div></div>
             <div class="row">
@@ -232,7 +232,7 @@
                 <div class="row">
                   <div class="col-md-4 col-lg-offset-2">
                <label for="AddressCity">City:&nbsp;</label><input name="AddressCity" type="text" size="32" style="padding-left:5px;" /></div>
-               <div class="col-md-2"><label for="AddressState">State:&nbsp;</label> 
+               <div class="col-md-3"><label for="AddressState">State:&nbsp;</label> 
                
                <select name="AddressState" >
                 <option value="">Select...</option>
@@ -288,7 +288,7 @@
   <option value="WI">Wisconsin</option>
   <option value="WY">Wyoming</option>
 </select>       </div>
-               <div class="col-md-2">
+               <div class="col-md-3">
               <label for="AddressZip">ZIP Code:&nbsp;</label><input name="AddressZip" type="text" size="10" style="padding-left:5px;" />
                </div>
                </div>
