@@ -69,12 +69,12 @@ $mail = new PHPMailer;
 $mail->isSMTP();                                      // Set mailer to use SMTP
 $mail->Host = 'mail.owlgrenade.com';  // Specify main and backup SMTP servers
 $mail->SMTPAuth = true;                               // Enable SMTP authentication
-$mail->Username = 'owladmin@owlgrenade.com';                 // SMTP username
-$mail->Password = 'TvZd@]@0*Lt';                           // SMTP password
+$mail->Username = 'examplemail@example.com';                 // SMTP username
+$mail->Password = 'examplepassword@password.com';                           // SMTP password
 $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
 $mail->Port = 26;                                    // TCP port to connect to
 
-$mail->setFrom('owladmin@owlgrenade.com', 'Mailer');
+$mail->setFrom('examplemail@example.com', 'Mailer');
 $mail->addAddress($_POST['Email'], 'Honored Customer');     // Add a recipient
 //$mail->addAddress('Warren');               // Name is optional
 $mail->addReplyTo('info@example.com', 'Information');

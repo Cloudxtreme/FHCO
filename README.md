@@ -1,5 +1,9 @@
-# Google recaptcha demo
 
-Tutorial > https://codeforgeek.com/2014/12/google-recaptcha-tutorial/
+Class signup system for the Fair Housing Council of Oregon. Users select a class, pay, and recieve a confirmation e-mail.
 
-Demo > http://demo.codeforgeek.com/google-captcha/
+Uses: 
+-PHP mailer
+-Stripe payments
+-bootstrap
+-jquery
+-Google recaptcha
